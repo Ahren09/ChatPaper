@@ -1,8 +1,8 @@
-import fitz, io, os
-from PIL import Image
-from collections import Counter
 import json
 import re
+from collections import Counter
+
+import fitz
 
 
 class Paper:
