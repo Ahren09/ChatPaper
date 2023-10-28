@@ -1,0 +1,23 @@
+## Paper:1
+
+
+
+
+level representation that is more suitable for a specific downstream task, such as node classification. The HGCN model (Chami et al. 2019) extends GCN to the hyperbolic space, allowing for more expressive and accurate modeling for hierarchical data, such as tree-like or power-law distributed graph data. 
+
+Strengths:
+- Novelty: The paper proposes a novel approach for graph knowledge distillation, leveraging manifold structures and multiple teachers with diverse embeddings to provide more precise guidance for student models. The use of local structure preservation and fusion network is also a unique aspect of the proposed approach.
+- Quality: The paper is technically sound and well-supported by theory and experiments.
+- Clarity: The paper is well-organized and clearly written, with appropriate figures and examples to aid understanding.
+- Significance: The paper has significant impact on the AI research community related to graph representation learning and hyperbolic neural networks. The proposed approach shows improved performance on node classification tasks and can be applicable to various real-world graph data.
+
+Weaknesses:
+One potential limitation is the complexity of the proposed approach, which may make it difficult to implement in some situations or with limited data resources. The paper could benefit from more detailed analysis and discussion of this limitation and potential solutions.
+
+Questions for the Authors:
+1. How do you envision the proposed approach being extended or applied to other graph-related tasks beyond node classification, such as link prediction or graph clustering? 
+2. Can you provide examples of real-world graph datasets where the proposed approach may not be suitable or where the use of manifold structures may not improve performance? 
+3. How feasible is it to implement the proposed approach in practical applications where computational resources may be limited? Are there any specific optimizations or trade-offs that could be made to improve efficiency without sacrificing effectiveness? 
+
+Overall score: 8
+The paper provides a novel approach for graph knowledge distillation on manifold structures that shows improved performance on node classification tasks across various real-world graph data. The paper is technically sound, well-organized, and offers significant contributions to the AI research community related to graph representation learning and hyperbolic neural networks. The only potential limitation is the proposed approach's complexity, which could benefit from more analysis and discussion in future work.

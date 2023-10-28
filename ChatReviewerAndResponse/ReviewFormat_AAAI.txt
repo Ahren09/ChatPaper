@@ -1,0 +1,28 @@
+* Overall Review
+Briefly summarize the main claims/contributions of the paper.
+xxx
+
+* Paper Strength 
+Please provide a thorough assessment of the strengths and weaknesses of the paper, touching on each of the following dimensions:
+- Novelty (how novel are the concepts, problems addressed, or methods introduced in the paper)
+- Quality (is the paper technically sound?)
+- Clarity (is the paper well-organized and clearly written?)
+- Significance (comment on the likely impact of the paper on the AI research community, i.e., explain how the paper might impact its own sub-field or the general AI community.).
+ Maximum length: 2,000 characters
+
+(1) xxx
+(2) xxx
+(3) xxx
+...
+
+* Questions for the Authors
+Please carefully list the questions that you would like the authors to answer during the author feedback period. Think of the things where a response from the author may change your opinion, clarify a confusion or address a limitation. Please number your questions.
+(1) xxx
+(2) xxx
+(3) xxx
+...
+
+
+* Overall score (1-10)
+The paper is scored on a scale of 1-10, with 10 being the full mark, and 6 stands for borderline accept. Then give the reason for your rating.
+xxx

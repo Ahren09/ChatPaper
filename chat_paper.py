@@ -781,7 +781,7 @@ def chat_paper_main(args):
                 print("root:", root, "dirs:", dirs, 'files:', files)  # 当前目录路径
                 for filename in files:
                     # 如果找到PDF文件，则将其复制到目标文件夹中
-                    if filename.endswith(".pdf"):
+                    if filename.endswith(".pdf") and filename in ["10654.pdf"]:
                         paper_list.append(Paper(path=os.path.join(root, filename)))
         print("------------------paper_num: {}------------------".format(len(paper_list)))
         [print(paper_index, paper_name.path.split('\\')[-1]) for paper_index, paper_name in enumerate(paper_list)]

@@ -6,7 +6,7 @@ import fitz
 
 
 class Paper:
-    def __init__(self, path, title='', url='', abs='', authors=[]):
+    def __init__(self, path, title='', url='', abs='', authors=[], grading=False):
         # 初始化函数，根据pdf路径初始化Paper对象                
         self.url = url  # 文章链接
         self.path = path  # pdf路径
@@ -14,12 +14,81 @@ class Paper:
         self.section_texts = {}  # 段落内容
         self.abs = abs
         self.title_page = 0
-        if title == '':
-            self.pdf = fitz.open(self.path)  # pdf文档
-            self.title = self.get_title()
-            self.parse_pdf()
+
+        # Ahren: Homework grading only
+        if grading:
+
+
+            if path.endswith('.pdf'):
+                self.pdf = fitz.open(self.path)
+                self.text_list = [page.get_text() for page in self.pdf]
+
+            elif path.endswith('.txt') or path.endswith('.md'):
+                self.title = ""  # TODO
+
+                with open(path, 'r', encoding='utf-8') as f:
+                    self.text_list = f.readlines()
+
+            self.text_list += ["\n", "[EOF]"]
+            potential_title = []
+            for idx_line, line in enumerate(self.text_list):
+                if line != '\n':
+                    potential_title.append(line.strip('\n'))
+                else:
+                    break
+
+            self.title = " ".join(potential_title)
+
+            print("Title:", self.title)
+
+
+
+
+            """ 
+            IS_NEXT_LINE_A_SECTION_TITLE = True
+
+            section_contents = []
+            section_title = ""
+
+            for idx_line, line in enumerate(self.text_list):
+                if IS_NEXT_LINE_A_SECTION_TITLE:
+                    line = line.strip('\n')
+                    print("Section:", line)
+                    section_title = line
+
+                else:
+                    section_contents.append(line.strip("\n"))
+
+                if line == '\n':
+                    IS_NEXT_LINE_A_SECTION_TITLE = True
+
+            self.all_text = ' '.join(self.text_list)
+            
+            """
+            self.all_text = ' '.join([line.strip('\n') for line in self.text_list])
+
+
+
+
+
+
         else:
-            self.title = title
+            if path.endswith('.pdf'):
+
+                if title == '':
+                    self.pdf = fitz.open(self.path)  # pdf文档
+                    self.title = self.get_title()
+                    self.parse_pdf()
+                else:
+                    self.title = title
+
+
+
+
+
+
+
+
         self.authors = authors
         self.roman_num = ["I", "II", 'III', "IV", "V", "VI", "VII", "VIII", "IIX", "IX", "X"]
         self.digit_num = [str(d + 1) for d in range(10)]
@@ -29,7 +98,15 @@ class Paper:
         self.pdf = fitz.open(self.path)  # pdf文档
         self.text_list = [page.get_text() for page in self.pdf]
         self.all_text = ' '.join(self.text_list)
-        self.extract_section_infomation()
+        self.extract_section_information()
+        self.section_texts.update({"title": self.title})
+        self.pdf.close()
+
+    def parse_txt(self):
+        with open(self.path, 'r', encoding='utf-8') as f:
+            text = f.readlines()
+        self.all_text = ' '.join(text)
+        self.extract_section_information()
         self.section_texts.update({"title": self.title})
         self.pdf.close()
 
@@ -92,13 +169,16 @@ class Paper:
                                 if cur_title == '':
                                     cur_title += cur_string
                                 else:
-                                    cur_title += ' ' + cur_string
+
+                                    # Ahren: We only use the largest font on the first page as the title
+                                    pass # cur_title += ' ' + cur_string
                                 self.title_page = page_index
                                 # break
         title = cur_title.replace('\n', ' ')
+        print("title:", title)
         return title
 
-    def extract_section_infomation(self):
+    def extract_section_information(self):
         doc = fitz.open(self.path)
 
         # 获取文档中所有字体大小
